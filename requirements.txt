@@ -2,5 +2,6 @@ streamlit
 langchain
 langchain-groq
 langchain-community
+sentence-transformers
 PyPDF2
 faiss-cpu
