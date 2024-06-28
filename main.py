@@ -5,6 +5,7 @@ from langchain.chains import RetrievalQA
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 def generate_response(file, query):
     #format file
@@ -19,7 +20,7 @@ def generate_response(file, query):
     )
     docs = text_splitter.create_documents(formatted_document)
     #create embeddings
-    embeddings = SentenceTransformerEmbeddings()
+    embeddings = HuggingFaceEmbeddings()
     #load to vector database
     #store = Chroma.from_documents(texts, embeddings)
 
@@ -38,16 +39,18 @@ def generate_response(file, query):
         retriever=store.as_retriever()
     )
     #run chain with query
-    return retrieval_chain.run(query)
+    return retrieval_chain.invoke(query)
 
 
 st.set_page_config(
-    page_title="Q&A from a long PDF Document"
+    page_title="PDF Partner"
 )
-st.title("Q&A from a long PDF Document")
+st.markdown("<h1 style='text-align: center; font-size:5rem;'>PDF Partner</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size:1rem; font-weight: 200;'>Turn your boring PDF's into an interactive Q and A</p><br><br>", unsafe_allow_html=True)
+
 
 uploaded_file = st.file_uploader(
-    "Upload a .pdf document",
+    "Upload a .pdf document to ask questions about it",
     type="pdf"
 )
 
@@ -68,7 +71,7 @@ with st.form(
     )
     if submitted:
         with st.spinner(
-            "Wait, please. I am working on it..."
+            "Going through your document"
             ):
             response = generate_response(
                 uploaded_file,
@@ -77,4 +80,4 @@ with st.form(
             result.append(response)
             
 if len(result):
-    st.info(response)
+    st.info(response['result'])
