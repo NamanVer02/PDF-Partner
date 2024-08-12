@@ -46,7 +46,6 @@ st.set_page_config(
 )
 st.markdown("<h1 style='text-align: center; font-size:5rem;'>PDF Partner</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; font-size:1rem; font-weight: 200;'>Turn your boring PDF's into an interactive Q and A</p><br><br>", unsafe_allow_html=True)
-st.markdown("<a style='text-align: center; font-size:0.7rem; font-weight: 200;' href='https://www.namanverma.in/'>Made by Naman Vemra</a><br><br>", unsafe_allow_html=True)
 
 
 uploaded_file = st.file_uploader(
@@ -81,3 +80,5 @@ with st.form(
             
 if len(result):
     st.info(response['result'])
+    
+st.markdown("<a style='text-align: center; font-size:0.7rem; font-weight: 200;' href='https://www.namanverma.in/'>Made by Naman Vemra</a><br><br>", unsafe_allow_html=True)
