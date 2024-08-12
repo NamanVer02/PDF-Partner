@@ -81,4 +81,4 @@ with st.form(
 if len(result):
     st.info(response['result'])
     
-st.markdown("<a style='text-align: center; font-size:0.7rem; font-weight: 200;' href='https://www.namanverma.in/'>Made by Naman Vemra</a><br><br>", unsafe_allow_html=True)
+st.markdown("<a style='text-align: center; font-size:0.7rem; font-weight: 200;' href='https://www.namanverma.in/'>By: Naman Vemra</a><br><br>", unsafe_allow_html=True)
