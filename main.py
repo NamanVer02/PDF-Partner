@@ -28,7 +28,7 @@ def generate_response(file, query):
     #create retrieval chain
     llm = ChatGroq(
         temperature=0.2,
-        model="llama3-70b-8192",
+        model="llama-3.1-70b-versatile",
         api_key=st.secrets["GROQ_API_KEY"]
     )
     
